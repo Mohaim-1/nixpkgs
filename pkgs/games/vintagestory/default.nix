@@ -70,6 +70,7 @@ stdenv.mkDerivation rec {
 
   preFixup = ''
     makeWrapper ${dotnet-runtime_7}/bin/dotnet $out/bin/vintagestory \
+      --set LD_PRELOAD ${final.xorg.libXcursor}/lib/libXcursor.so.1 \
       --prefix LD_LIBRARY_PATH : "${runtimeLibs}" \
       --add-flags $out/share/vintagestory/Vintagestory.dll
     makeWrapper ${dotnet-runtime_7}/bin/dotnet $out/bin/vintagestory-server \
